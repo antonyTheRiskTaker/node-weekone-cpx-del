@@ -89,6 +89,7 @@ app.get("/uploaded/:filename", (req, res) => {
 app.delete("/uploaded/:filename", (req, res) => {
   console.log(req.params.filename);
 
+  // (Lines below) fs.unlink() is used to asynchronously remove a file
   fs.unlink(__dirname + "/uploaded/" + req.params.filename, (error) => {
     if (error) {
       console.log(error);
