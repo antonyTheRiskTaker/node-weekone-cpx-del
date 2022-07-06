@@ -6,8 +6,10 @@ const fs = require("fs");
 const path = require("path");
 
 // set up middleware
-// Read this stackoverflow post on express.json() and express.urlencoded(): 
+/*
+Read this stackoverflow post on express.json() and express.urlencoded(): 
 https://stackoverflow.com/questions/23259168/what-are-express-json-and-express-urlencoded
+*/
 // express.json() and express.urlencoded() are needed to handle POST and PUT/PATCH requests
 // (Line below) so the server recognises the request object as a JSON object
 app.use(express.json());
@@ -65,6 +67,7 @@ app.post("/", (req, res) => {
       req.files.file.data
     );
     cache[req.files.file.name].then(() => {
+      // (Line below) it creates a downloadable link on the page
       res.send(req.files.file.name);
       // res.redirect("/"); // use the inbuilt html form methods post and action
     });
